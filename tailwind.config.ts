@@ -18,6 +18,11 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+		fontFamily: {
+			ibm: ['"IBM Plex Sans"', 'sans-serif'],
+			oswald: ['Oswald', 'sans-serif'],
+			mono: ['"IBM Plex Mono"', 'monospace'],
+		},
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
@@ -89,7 +94,24 @@ export default {
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fadeIn 0.4s ease forwards',
+				'slide-up': 'slideUp 0.5s ease forwards',
+				'pulse-gold': 'pulseGold 2s ease-in-out infinite',
+			},
+			keyframes: {
+				fadeIn: {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
+				},
+				slideUp: {
+					from: { opacity: '0', transform: 'translateY(20px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				pulseGold: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
+				}
 			}
 		}
 	},
