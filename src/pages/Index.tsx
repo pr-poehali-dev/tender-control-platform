@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import Purchases from "./Purchases";
 
 const tenders = [
   {
@@ -97,7 +98,7 @@ const stats = [
 
 const categories = ["Все", "ИТ-оборудование", "ИТ-услуги", "Строительство", "Медицина", "Транспорт", "Мебель"];
 const laws = ["Все законы", "44-ФЗ", "223-ФЗ"];
-const navItems = ["Дашборд", "Тендеры", "Мои заявки", "Аналитика", "Уведомления"];
+const navItems = ["Дашборд", "Тендеры", "Мои закупки", "Мои заявки", "Аналитика", "Уведомления"];
 
 function formatPrice(p: number) {
   if (p >= 1_000_000) return `${(p / 1_000_000).toFixed(1)} млн ₽`;
@@ -216,6 +217,7 @@ export default function Index() {
               {[
                 { icon: "LayoutDashboard", label: "Дашборд", count: null },
                 { icon: "FileSearch", label: "Тендеры", count: "2 841" },
+                { icon: "ShoppingBag", label: "Мои закупки", count: null },
                 { icon: "Send", label: "Мои заявки", count: "12" },
                 { icon: "Star", label: "Избранное", count: "8" },
                 { icon: "BarChart3", label: "Аналитика", count: null },
@@ -269,7 +271,12 @@ export default function Index() {
         )}
 
         {/* MAIN CONTENT */}
-        <main className="flex-1 overflow-y-auto scrollbar-thin">
+        <main className={`flex-1 flex flex-col ${activeNav === "Мои закупки" ? "overflow-hidden" : "overflow-y-auto scrollbar-thin"}`}>
+          {/* МОИ ЗАКУПКИ — отдельный раздел */}
+          {activeNav === "Мои закупки" ? (
+            <Purchases />
+          ) : (
+          <>
           {/* HERO STRIP */}
           <div className="relative border-b border-border px-6 py-5 overflow-hidden">
             <div className="absolute inset-0 grid-diagonal opacity-30" />
@@ -635,6 +642,8 @@ export default function Index() {
               })}
             </div>
           </div>
+          </>
+          )}
         </main>
       </div>
     </div>
